@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const port = process.env.PORT || 8080;
 app.set('view engine','pug');
 
 app.get('/',(req,res)=>{
@@ -8,6 +9,6 @@ app.get('/',(req,res)=>{
     console.log(process.env.PORT);
 })
 
-app.listen(8080),()=>{
-    console.log("started on 3000")
+app.listen(port),()=>{
+    console.log(`started server on port{PORT}`);
 };
