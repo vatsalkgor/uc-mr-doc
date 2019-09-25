@@ -9,6 +9,10 @@ app.get('/',(req,res)=>{
     console.log(process.env.PORT);
 })
 
+app.get('/webhook',(req,res)=>{
+    console.log(req);
+})
+
 app.listen(port),()=>{
     console.log(`started server on port{PORT}`);
 };
