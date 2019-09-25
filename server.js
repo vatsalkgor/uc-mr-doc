@@ -9,7 +9,7 @@ app.get('/',(req,res)=>{
     console.log(process.env.PORT);
 })
 
-app.get('/webhook',(req,res)=>{
+app.post('/webhook',(req,res)=>{
     console.log(req);
     res.send("received");
 })
