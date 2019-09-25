@@ -11,6 +11,7 @@ app.get('/',(req,res)=>{
 
 app.get('/webhook',(req,res)=>{
     console.log(req);
+    res.send("received");
 })
 
 app.listen(port),()=>{
