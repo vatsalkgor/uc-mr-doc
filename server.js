@@ -13,11 +13,6 @@ app.get('/',(req,res)=>{
 
     // req.on('data', (data, err) => {
 app.post('/webhook',jp,(req,res)=>{
-    //     if (err) res.status(404).send({error: "invalid json"}); 
-    //     req.body = JSON.parse(data);
-    //     // console.log(req.body);
-    //     res.send(req.body);
-    // });
     console.log(req.body);
     res.send("hi")
 })
