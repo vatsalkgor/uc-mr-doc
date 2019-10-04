@@ -11,8 +11,8 @@ app.get('/',(req,res)=>{
     console.log(process.env.PORT);
 })
 
-app.post('/webhook',jp,(req,res)=>{
     // req.on('data', (data, err) => {
+app.post('/webhook',jp,(req,res)=>{
     //     if (err) res.status(404).send({error: "invalid json"}); 
     //     req.body = JSON.parse(data);
     //     // console.log(req.body);
