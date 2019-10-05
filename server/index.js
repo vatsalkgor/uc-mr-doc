@@ -8,7 +8,7 @@ const data = require('./routes/data');
 const events = new require("events");
 const emitter = new events.EventEmitter();
 emitter.on('insert_knowabout',(req,res)=>{
-    res.redirect(req.get('refer'))
+    res.redirect(req.get('referer'))
 })
 app.set('view engine', 'pug');
 app.set('json spaces', 40);
