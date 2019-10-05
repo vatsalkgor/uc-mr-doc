@@ -15,9 +15,8 @@ app.get('/', (req, res) => {
 
 // req.on('data', (data, err) => {
 app.post('/webhook', jp, (req, res) => {
-    console.log(req.body);
     if (req.body.queryResult.intent.displayName.toLowerCase() == "knowabout") {
-        session_array = req.body.queryResult.session.split('/');
+        session_array = req.body.session.split('/');
         connection.execute(`insert into uc_data(session_id,intent) VALUES('${session_array[session_array.length - 1]}','${req.body.queryResult.intent.displayName}')`, (err, results, fields) => {
             if (!err) {
                 console.log(results);
