@@ -7,7 +7,7 @@ const mysql = require("mysql2");
 //     database:'epiz_23055073_uc'
 // });
 
-const connection = mysql.createConnection({
+const connection = mysql.createPool({
     host:'46.17.175.22',
     user:'u989048914_uc',
     password:'vatsalg007',
