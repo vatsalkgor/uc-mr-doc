@@ -30,7 +30,7 @@ app.post('/webhook', jp, (req, res) => {
                             "richResponse":[
                                 {
                                     "simpleResponse":{
-                                        req.body.queryResult.fulfillmentText
+                                        "textToSpeech":req.body.queryResult.fulfillmentText
                                     }
                                 }
                             ]
