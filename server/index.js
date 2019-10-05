@@ -4,15 +4,29 @@ const bp = require('body-parser');
 const jp = bp.json();
 const port = process.env.PORT || 8080;
 const connection = require('./db');
-
+const data = require('./routes/data');
 app.set('view engine', 'pug');
+app.set('json spaces',40);
 
 app.get('/', (req, res) => {
-    console.log("hello from express");
-    res.send("hello from heroku");
-    console.log(process.env.PORT);
+    // console.log("hello from express");
+    res.render("index");
+    // console.log(process.env.PORT);
 })
-
+let options = {
+    dotfiles: 'ignore',
+    etag: false,
+    extensions: ['pug','js','css'],
+    index: false,
+    maxAge: '1d',
+    redirect: false,
+    setHeaders: function (res, path, stat) {
+      res.set('x-timestamp', Date.now())
+    }
+  }
+  
+  app.use(express.static('views', options))
+  
 // req.on('data', (data, err) => {
 app.post('/webhook', jp, (req, res) => {
     if (req.body.queryResult.intent.displayName.toLowerCase() == "knowabout") {
@@ -40,6 +54,8 @@ app.post('/webhook', jp, (req, res) => {
         });
     }
 })
+
+app.use('/api/data',data);
 
 app.listen(port), () => {
     console.log(`started server on port{PORT}`);
