@@ -7,8 +7,8 @@ const connection = require('./db');
 const data = require('./routes/data');
 const events = new require("events");
 const emitter = new events.EventEmitter();
-emitter.on('insert_knowabout',()=>{
-    location.reload();
+emitter.on('insert_knowabout',(req,res)=>{
+    res.redirect(req.get('refer'))
 })
 app.set('view engine', 'pug');
 app.set('json spaces', 40);
@@ -38,7 +38,7 @@ app.post('/webhook', (req, res) => {
         session_array = req.body.session.split('/');
         connection.execute(`insert into uc_data(session_id,intent) VALUES('${session_array[session_array.length - 1]}','${req.body.queryResult.intent.displayName}')`, (err, results, fields) => {
             if (!err) {
-                emitter.emit('insert_knowabout');
+                emitter.emit('insert_knowabout',req,res);
                 return res.json({
                     "fulfillmentText": req.body.queryResult.fulfillmentText,
                     "payload": {
