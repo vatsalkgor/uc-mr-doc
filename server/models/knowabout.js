@@ -2,8 +2,8 @@ const connection = require("../db");
 
 module.exports = {
     getKnowAbouts: async () => {
-        const [rows,fields] = await connection.promise().query(`SELECT COUNT(intent) as ic, added from uc_data where intent='KnowAbout' group by added order by added DESC limit 5;`)
-        return rows;
+        return await connection.promise().query(`SELECT COUNT(intent) as ic, added from uc_data where intent='KnowAbout' group by added order by added DESC limit 5;`)
+        
     },
     putKnowAbouts: () => { }
 }

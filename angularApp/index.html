@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.min.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            display: block;
+            height: 255px;
+            overflow-y: scroll;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body ng-app="uc">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card" ng-controller="KnowAbout">
+                    <div class="card-header">{{heading}}</div>
+                    <canvas class="chart chart-line" chart-data="data" chart-labels="labels"
+                        chart-series="series"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6" ng-controller="Appointments">
+                <div class="card">
+                    <div class="card-header">{{heading}}</div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <th>User</th>
+                                <th>Date</th>
+                                <th>Symptoms</th>
+                                <th>Predicted Disease</th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="a in appointments">
+                                    <td>{{a.user}}</td>
+                                    <td>{{a.date}}</td>
+                                    <td><span ng-repeat="s in a.symptoms">{{s}},</span></td>
+                                    <td>{{a.predicted}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card" ng-controller="Emergency">
+                    <div class="card-header">{{heading}}</div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <th>User</th>
+                                <th>Query</th>
+                                <th>Date</th>
+                                <th>Predicted Emergency</th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="e in emergencies">
+                                    <td>{{e.user}}</td>
+                                    <td>{{e.query}}</td>
+                                    <td>{{e.date}}</td>
+                                    <td>{{e.emergency? "Yes": "No"}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card" ng-controller="RepeatPrescription">
+                    <div class="card-header">Repeat Prescription</div>
+                    <canvas class="chart chart-line" chart-data="data" chart-labels="labels"
+                        chart-series="series" options="options"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
