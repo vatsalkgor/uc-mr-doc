@@ -109,7 +109,7 @@ app.post('/webhook', (req, res, next) => {
         })
     } else {
         let session_array = req.body.session.split('/');
-        if (req.body.queryResult.queryText.toLowerCase().includes(' no ')) {
+        if (req.body.queryResult.queryText.toLowerCase().includes('no')) {
             console.log(current_users.find(x => x.username == session_array[session_array.length - 1]).data)
             let percentage = predictor.predictDisease(current_users.find(o => o.username == session_array[session_array.length - 1]).data);
             current_predictions.push({
