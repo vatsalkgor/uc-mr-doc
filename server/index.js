@@ -12,7 +12,7 @@ const cors = require("cors");
 let emergency = { 'user': null, 'query': null };
 let knowabout_count = 0;
 let current_users = [];
-let current_predictions=[];
+let current_predictions = [];
 const predict = require('./predictDisease');
 const predictor = new predict();
 app.set('view engine', 'pug');
@@ -50,14 +50,16 @@ app.post('/webhook', (req, res, next) => {
                     "payload": {
                         "google": {
                             "expectUserResponse": true,
-                            "richResponse": [
-                                {
-                                    "simpleResponse": {
-                                        "textToSpeech": req.body.queryResult.fulfillmentText,
-                                        "displayText": req.body.queryResult.fulfillmentText
+                            "richResponse": {
+                                "items": [
+                                    {
+                                        "simpleResponse": {
+                                            "textToSpeech": req.body.queryResult.fulfillmentText,
+                                            "displayText": req.body.queryResult.fulfillmentText
+                                        }
                                     }
-                                }
-                            ]
+                                ]
+                            }
                         }
                     }
                 })
@@ -71,19 +73,19 @@ app.post('/webhook', (req, res, next) => {
             "payload": {
                 "google": {
                     "expectUserResponse": true,
-                    "richResponse": [
+                    "richResponse": {
+                        "items":
                         {
                             "simpleResponse": {
                                 "textToSpeech": req.body.queryResult.fulfillmentText,
                                 "displayText": req.body.queryResult.fulfillmentText
                             }
                         }
-                    ]
+                    }
                 }
             }
         })
-    }
-    else if (req.body.queryResult.intent.displayName.toLowerCase() == "emergency") {
+    } else if (req.body.queryResult.intent.displayName.toLowerCase() == "emergency") {
         let session_array = req.body.session.split('/');
         emergency = {
             'user': session_array[session_array.length - 1],
@@ -94,41 +96,40 @@ app.post('/webhook', (req, res, next) => {
             "payload": {
                 "google": {
                     "expectUserResponse": true,
-                    "richResponse": [
-                        {
+                    "richResponse": {
+                        "items":{
                             "simpleResponse": {
                                 "textToSpeech": req.body.queryResult.fulfillmentText,
                                 "displayText": req.body.queryResult.fulfillmentText
                             }
                         }
-                    ]
+                    }
                 }
             }
         })
-    }
-    else {
+    } else {
         let session_array = req.body.session.split('/');
         if (req.body.queryResult.queryText.toLowerCase().includes(' no ')) {
-            console.log(current_users.find(x=>x.username == session_array[session_array.length - 1]).data)
-            let percentage = predictor.predictDisease(current_users.find(o=>o.username == session_array[session_array.length - 1]).data);
+            console.log(current_users.find(x => x.username == session_array[session_array.length - 1]).data)
+            let percentage = predictor.predictDisease(current_users.find(o => o.username == session_array[session_array.length - 1]).data);
             current_predictions.push({
-                "user":session_array[session_array.length - 1],
-                "prediction": percentage > 0.5?"Yes":"No",
-                "symptoms": current_users.find(x=>x.username == session_array[session_array.length - 1]).data
+                "user": session_array[session_array.length - 1],
+                "prediction": percentage > 0.5 ? "Yes" : "No",
+                "symptoms": current_users.find(x => x.username == session_array[session_array.length - 1]).data
             })
             res.json({
                 "fulfillmentText": req.body.queryResult.fulfillmentText,
                 "payload": {
                     "google": {
                         "expectUserResponse": true,
-                        "richResponse": [
-                            {
+                        "richResponse": {
+                            "items":{
                                 "simpleResponse": {
-                                    "textToSpeech": percentage>0.5?`We predicted that you have measels and your GP has been informed about that.`:`No need to worry just take some care and general medicines.`,
-                                    "displayText": percentage>0.5?`We predicted that you have measels and your GP has been informed about that.`:`No need to worry just take some care and general medicines.`
+                                    "textToSpeech": percentage > 0.5 ? `We predicted that you have measels and your GP has been informed about that.` : `No need to worry just take some care and general medicines.`,
+                                    "displayText": percentage > 0.5 ? `We predicted that you have measels and your GP has been informed about that.` : `No need to worry just take some care and general medicines.`
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             })
@@ -148,14 +149,14 @@ app.post('/webhook', (req, res, next) => {
                 "payload": {
                     "google": {
                         "expectUserResponse": true,
-                        "richResponse": [
-                            {
+                        "richResponse": {
+                            "items":{
                                 "simpleResponse": {
                                     "textToSpeech": "Do you have any other Symptoms?",
                                     "displayText": "Do you have any other Symptoms?"
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             })
@@ -182,8 +183,8 @@ app.use('/sse-knowabout', (req, res) => {
     res.json({ knowabout_count });
 })
 
-app.use('/sse-appointments',(req,res)=>{
-    res.json({appointments: current_predictions});
+app.use('/sse-appointments', (req, res) => {
+    res.json({ appointments: current_predictions });
 })
 
 
