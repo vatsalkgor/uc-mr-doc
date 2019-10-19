@@ -1,16 +1,19 @@
+const measelesSymptom = [
+    'fever',
+    'runny nose',
+    'dry cough',
+    'sore throat',
+    'inflamed eyes',
+    'conjuctivitis',
+    'pink eyes',
+    'tired'
+]
 class Predict {
-     measelesSymptom = [
-        'fever',
-        'runny nose',
-        'dry cough',
-        'sore throat',
-        'inflamed eyes',
-        'conjuctivitis',
-        'pink eyes',
-        'tired'
-    ]
+    getSymptoms = ()=>{
+        return measelesSymptom;
+    }
     predictDisease = (patientSymptoms) => {
-        return (this.measelesSymptom.filter(x => patientSymptoms.includes(x)).length) / ([...this.measelesSymptom, ...patientSymptoms].length)
+        return (this.getSymptoms().filter(x => patientSymptoms.includes(x)).length) / ([...this.getSymptoms(), ...patientSymptoms].length)
     }
 }
 
