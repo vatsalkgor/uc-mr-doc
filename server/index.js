@@ -114,19 +114,19 @@ app.post('/webhook', (req, res, next) => {
             let percentage = predictor.predictDisease(current_users.find(o => o.username == session_array[session_array.length - 1]).data);
             current_predictions.push({
                 "user": session_array[session_array.length - 1],
-                "prediction": percentage > 0.5 ? "Yes" : "No",
+                "prediction": percentage > 0.3 ? "Yes" : "No",
                 "symptoms": current_users.find(x => x.username == session_array[session_array.length - 1]).data
             })
             res.json({
-                "fulfillmentText": percentage > 0.5 ? `We predicted that you have measels and your GP has been informed about that.` : `No need to worry just take some care and general medicines.`,
+                "fulfillmentText": percentage > 0.3 ? `We predicted that you have measels and your GP has been informed about that.` : `No need to worry just take some care and general medicines.`,
                 "payload": {
                     "google": {
                         "expectUserResponse": true,
                         "richResponse": {
                             "items": {
                                 "simpleResponse": {
-                                    "textToSpeech": percentage > 0.5 ? `We predicted that you have measels and your GP has been informed about that.` : `No need to worry just take some care and general medicines.`,
-                                    "displayText": percentage > 0.5 ? `We predicted that you have measels and your GP has been informed about that.` : `No need to worry just take some care and general medicines.`
+                                    "textToSpeech": percentage > 0.3 ? `We predicted that you have measels and your GP has been informed about that.` : `No need to worry just take some care and general medicines.`,
+                                    "displayText": percentage > 0.3 ? `We predicted that you have measels and your GP has been informed about that.` : `No need to worry just take some care and general medicines.`
                                 }
                             }
                         }
