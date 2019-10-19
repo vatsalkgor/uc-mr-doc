@@ -97,7 +97,7 @@ app.post('/webhook', (req, res, next) => {
                 "google": {
                     "expectUserResponse": true,
                     "richResponse": {
-                        "items":{
+                        "items": {
                             "simpleResponse": {
                                 "textToSpeech": req.body.queryResult.fulfillmentText,
                                 "displayText": req.body.queryResult.fulfillmentText
@@ -118,12 +118,12 @@ app.post('/webhook', (req, res, next) => {
                 "symptoms": current_users.find(x => x.username == session_array[session_array.length - 1]).data
             })
             res.json({
-                "fulfillmentText": req.body.queryResult.fulfillmentText,
+                "fulfillmentText": percentage > 0.5 ? `We predicted that you have measels and your GP has been informed about that.` : `No need to worry just take some care and general medicines.`,
                 "payload": {
                     "google": {
                         "expectUserResponse": true,
                         "richResponse": {
-                            "items":{
+                            "items": {
                                 "simpleResponse": {
                                     "textToSpeech": percentage > 0.5 ? `We predicted that you have measels and your GP has been informed about that.` : `No need to worry just take some care and general medicines.`,
                                     "displayText": percentage > 0.5 ? `We predicted that you have measels and your GP has been informed about that.` : `No need to worry just take some care and general medicines.`
@@ -145,15 +145,15 @@ app.post('/webhook', (req, res, next) => {
             }
             console.log(current_users);
             res.json({
-                "fulfillmentText": req.body.queryResult.fulfillmentText,
+                "fulfillmentText": "Do you have any other symptoms?",
                 "payload": {
                     "google": {
                         "expectUserResponse": true,
                         "richResponse": {
-                            "items":{
+                            "items": {
                                 "simpleResponse": {
-                                    "textToSpeech": "Do you have any other Symptoms?",
-                                    "displayText": "Do you have any other Symptoms?"
+                                    "textToSpeech": "Do you have any other symptoms?",
+                                    "displayText": "Do you have any other symptoms?"
                                 }
                             }
                         }
