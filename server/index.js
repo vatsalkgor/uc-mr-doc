@@ -112,6 +112,7 @@ app.post('/webhook', (req, res, next) => {
         if (req.body.queryResult.queryText.toLowerCase().includes('no')) {
             console.log(current_users.find(x => x.username == session_array[session_array.length - 1]).data)
             let percentage = predictor.predictDisease(current_users.find(o => o.username == session_array[session_array.length - 1]).data);
+            console.log(percentage);
             current_predictions.push({
                 "user": session_array[session_array.length - 1],
                 "prediction": percentage > 0.3 ? "Yes" : "No",

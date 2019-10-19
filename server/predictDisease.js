@@ -13,7 +13,7 @@ class Predict {
         ]
     }
     predictDisease (patientSymptoms)  {
-        return (this.measelesSymptom.filter(x => patientSymptoms.includes(x)).length) / ([...this.measelesSymptom, ...patientSymptoms].length)
+        return (this.measelesSymptom.filter(x => patientSymptoms.includes(x)).length) / ([...this.measelesSymptom, ...patientSymptoms].length);
     }
 }
 
