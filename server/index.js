@@ -53,7 +53,8 @@ app.post('/webhook', (req, res, next) => {
                             "richResponse": [
                                 {
                                     "simpleResponse": {
-                                        "textToSpeech": req.body.queryResult.fulfillmentText
+                                        "textToSpeech": req.body.queryResult.fulfillmentText,
+                                        "displayText": req.body.queryResult.fulfillmentText
                                     }
                                 }
                             ]
@@ -73,7 +74,8 @@ app.post('/webhook', (req, res, next) => {
                     "richResponse": [
                         {
                             "simpleResponse": {
-                                "textToSpeech": req.body.queryResult.fulfillmentText
+                                "textToSpeech": req.body.queryResult.fulfillmentText,
+                                "displayText": req.body.queryResult.fulfillmentText
                             }
                         }
                     ]
@@ -95,7 +97,8 @@ app.post('/webhook', (req, res, next) => {
                     "richResponse": [
                         {
                             "simpleResponse": {
-                                "textToSpeech": req.body.queryResult.fulfillmentText
+                                "textToSpeech": req.body.queryResult.fulfillmentText,
+                                "displayText": req.body.queryResult.fulfillmentText
                             }
                         }
                     ]
@@ -121,7 +124,8 @@ app.post('/webhook', (req, res, next) => {
                         "richResponse": [
                             {
                                 "simpleResponse": {
-                                    "textToSpeech": percentage>0.5?`We predicted that you have measels and your GP has been informed about that.`:`No need to worry just take some care and general medicines.`
+                                    "textToSpeech": percentage>0.5?`We predicted that you have measels and your GP has been informed about that.`:`No need to worry just take some care and general medicines.`,
+                                    "displayText": percentage>0.5?`We predicted that you have measels and your GP has been informed about that.`:`No need to worry just take some care and general medicines.`
                                 }
                             }
                         ]
@@ -147,7 +151,8 @@ app.post('/webhook', (req, res, next) => {
                         "richResponse": [
                             {
                                 "simpleResponse": {
-                                    "textToSpeech": "Do you have any other Symptoms?"
+                                    "textToSpeech": "Do you have any other Symptoms?",
+                                    "displayText": "Do you have any other Symptoms?"
                                 }
                             }
                         ]
