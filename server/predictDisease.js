@@ -1,5 +1,5 @@
 class Predict {
-    measelesSymptoms = [
+     measelesSymptom = [
         'fever',
         'runny nose',
         'dry cough',
@@ -10,7 +10,7 @@ class Predict {
         'tired'
     ]
     predictDisease = (patientSymptoms) => {
-        return (this.measelesSymptoms.filter(x => patientSymptoms.includes(x)).length) / ([...this.measelesSymptoms, ...patientSymptoms].length)
+        return (this.measelesSymptom.filter(x => patientSymptoms.includes(x)).length) / ([...this.measelesSymptom, ...patientSymptoms].length)
     }
 }
 
