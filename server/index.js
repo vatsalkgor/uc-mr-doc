@@ -19,11 +19,11 @@ app.set('view engine', 'pug');
 app.set('json spaces', 40);
 app.use(jp);
 app.use(cors())
-app.get('/', (req, res) => {
-    // console.log("hello from express");
-    res.render("index");
-    // console.log(process.env.PORT);
-})
+// app.get('/', (req, res) => {
+//     // console.log("hello from express");
+//     res.render("index");
+//     // console.log(process.env.PORT);
+// })
 let options = {
     dotfiles: 'ignore',
     etag: false,
