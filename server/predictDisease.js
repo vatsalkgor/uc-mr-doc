@@ -1,16 +1,19 @@
-const measelesSymptom = [
-    'fever',
-    'runny nose',
-    'dry cough',
-    'sore throat',
-    'inflamed eyes',
-    'conjuctivitis',
-    'pink eyes',
-    'tired'
-]
+
 class Predict {
-    predictDisease = (patientSymptoms) => {
-        return (measelesSymptom.filter(x => patientSymptoms.includes(x)).length) / ([...measelesSymptom, ...patientSymptoms].length)
+    constructor(){
+        this.measelesSymptom = [
+            'fever',
+            'runny nose',
+            'dry cough',
+            'sore throat',
+            'inflamed eyes',
+            'conjuctivitis',
+            'pink eyes',
+            'tired'
+        ]
+    }
+    predictDisease (patientSymptoms)  {
+        return (this.measelesSymptom.filter(x => patientSymptoms.includes(x)).length) / ([...this.measelesSymptom, ...patientSymptoms].length)
     }
 }
 
