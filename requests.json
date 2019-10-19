@@ -1,0 +1,137 @@
+{
+    "comments":"file which contains different requests for api testing. can be used in demo.",
+    "requests": [
+        {
+            "responseId": "56399663-38ec-4515-9ab3-63ac02699df8-7e4f1f27",
+            "queryResult": {
+                "queryText": "can you please repeat my prescription?",
+                "parameters": {},
+                "allRequiredParamsPresent": true,
+                "fulfillmentText": "Okay! Your prescription has been repeated.  You can collect it from the store.",
+                "fulfillmentMessages": [
+                    {
+                        "text": {
+                            "text": [
+                                "Okay! Your prescription has been repeated.  You can collect it from the store."
+                            ]
+                        }
+                    }
+                ],
+                "intent": {
+                    "name": "projects/mrdoctor-ktqrmj/agent/intents/cd4a0ae9-a62d-4ae1-a52e-8e7b6cdbbf9c",
+                    "displayName": "Prescription"
+                },
+                "intentDetectionConfidence": 1,
+                "languageCode": "en"
+            },
+            "originalDetectIntentRequest": {
+                "payload": {}
+            },
+            "session": "projects/mrdoctor-ktqrmj/agent/sessions/584cd892-537b-f0f2-4139-8a2deb335085"
+        },
+        {
+            "responseId": "f30f0371-4ba6-4a5b-af09-530f672d3c26-7e4f1f27",
+            "queryResult": {
+                "queryText": "what should i take with me on trekking?",
+                "parameters": {
+                    "Topic": "trekking"
+                },
+                "allRequiredParamsPresent": true,
+                "fulfillmentText": "First of all, don't forget to take your cell phones. Take some general pain and relief medicines like aspirin. Also add Neosporin, Benadryl for cuts and allergies.",
+                "fulfillmentMessages": [
+                    {
+                        "text": {
+                            "text": [
+                                "First of all, don't forget to take your cell phones. Take some general pain and relief medicines like aspirin. Also add Neosporin, Benadryl for cuts and allergies."
+                            ]
+                        }
+                    }
+                ],
+                "outputContexts": [
+                    {
+                        "name": "projects/mrdoctor-ktqrmj/agent/sessions/584cd892-537b-f0f2-4139-8a2deb335085/contexts/information",
+                        "lifespanCount": 5,
+                        "parameters": {
+                            "Topic": "trekking",
+                            "Topic.original": "trekking"
+                        }
+                    }
+                ],
+                "intent": {
+                    "name": "projects/mrdoctor-ktqrmj/agent/intents/dcb8cfd7-90e2-430d-afa3-39f3bce2224c",
+                    "displayName": "KnowAbout"
+                },
+                "intentDetectionConfidence": 1,
+                "languageCode": "en"
+            },
+            "originalDetectIntentRequest": {
+                "payload": {}
+            },
+            "session": "projects/mrdoctor-ktqrmj/agent/sessions/584cd892-537b-f0f2-4139-8a2deb335085"
+        },
+        {
+            "responseId": "90d4d2d7-390f-4f64-b5f5-2e53c88f430d-7e4f1f27",
+            "queryResult": {
+                "queryText": "my head is aching",
+                "parameters": {},
+                "allRequiredParamsPresent": true,
+                "fulfillmentText": "Okay! I have informed the emergency services. They will contact you soon.",
+                "fulfillmentMessages": [
+                    {
+                        "text": {
+                            "text": [
+                                "Okay! I have informed the emergency services. They will contact you soon."
+                            ]
+                        }
+                    }
+                ],
+                "intent": {
+                    "name": "projects/mrdoctor-ktqrmj/agent/intents/36df2071-4442-4fe6-8c41-dd4cc4cd399a",
+                    "displayName": "Emergency"
+                },
+                "intentDetectionConfidence": 0.6514191,
+                "languageCode": "en"
+            },
+            "originalDetectIntentRequest": {
+                "payload": {}
+            },
+            "session": "projects/mrdoctor-ktqrmj/agent/sessions/584cd892-537b-f0f2-4139-8a2deb335085"
+        },
+        {
+            "responseId": "86597e98-be52-4440-bf47-781845596441-7e4f1f27",
+            "queryResult": {
+              "queryText": "I have fever dizzyness, headache and red eyes,runny nose and i am tired",
+              "parameters": {
+                "Symptoms": [
+                  "fever",
+                  "dizzyness",
+                  "red eyes",
+                  "headache",
+                  "runny nose",
+                  "tired"
+                ]
+              },
+              "allRequiredParamsPresent": true,
+              "fulfillmentMessages": [
+                {
+                  "text": {
+                    "text": [
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "intent": {
+                "name": "projects/mrdoctor-ktqrmj/agent/intents/7badf9cc-205d-489c-a29d-40f8a4ad63ac",
+                "displayName": "Consult"
+              },
+              "intentDetectionConfidence": 1,
+              "languageCode": "en"
+            },
+            "originalDetectIntentRequest": {
+              "payload": {}
+            },
+            "session": "projects/mrdoctor-ktqrmj/agent/sessions/584cd892-537b-f0f2-4139-8a2deb335085"
+          }
+    ]
+}

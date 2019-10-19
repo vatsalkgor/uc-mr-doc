@@ -18,60 +18,33 @@ isEmergency = (query) => {
     return query.includes('fire') || query.includes('chest pain') || query.includes('breathe') || query.includes('bleeding') || query.includes('choking') || query.includes('danger') || query.includes('emergency');
 }
 
-app.controller("Appointments", ['$scope', ($scope) => {
+app.controller("Appointments", ['$scope', '$http', '$filter', ($scope, $http, $filter) => {
     $scope.heading = "Appointments";
-    $scope.appointments = [
-        {
-            "user": "vatsal",
-            "symptoms": ["headache", "runny nose"],
-            "predicted": "fever",
-            "date": "19-09-2019"
-        },
-        {
-            "user": "ajay",
-            "symptoms": ["headache", "dizzy_ness", "fever"],
-            "predicted": "measles",
-            "date": "25-09-2019"
-        },
-        {
-            "user": "ajay",
-            "symptoms": ["headache", "dizzy_ness", "fever", "red_rashes"],
-            "predicted": "measles",
-            "date": "19-09-2019"
-        },
-        {
-            "user": "vatsal",
-            "symptoms": ["headache", "runny nose"],
-            "predicted": "fever",
-            "date": "19-09-2019"
-        },
-        {
-            "user": "ajay",
-            "symptoms": ["headache", "dizzy_ness", "fever"],
-            "predicted": "measles",
-            "date": "25-09-2019"
-        },
-        {
-            "user": "ajay",
-            "symptoms": ["headache", "dizzy_ness", "fever", "red_rashes"],
-            "predicted": "measles",
-            "date": "19-09-2019"
-        },
-    ]
+    $scope.appointments = [];
+    setInterval(()=>{
+        $http.post('http://localhost:8080/sse-appointments').then(response=>{
+            if(response.data.appointments.length != $scope.appointments.length){
+                response.data.appointments[response.data.appointments.length - 1].date = $filter('date')(new Date(),'d-M-y h:m:s');
+                console.log($scope.appointments)
+                console.log(response.data.appointments)
+                $scope.appointments.push(response.data.appointments[response.data.appointments.length - 1]);
+            }
+        })
+    },1000)
 }])
 
-app.controller("KnowAbout", ['$scope','$http','$filter', ($scope,$http,$filter) => {
+app.controller("KnowAbout", ['$scope', '$http', '$filter', ($scope, $http, $filter) => {
     $scope.heading = "KnowAbout";
     $scope.data = [];
     $scope.labels = [];
-    setInterval(()=>{
+    setInterval(() => {
         $http.post('http://localhost:8080/sse-knowabout').then((response) => {
             if ($scope.data[$scope.data.length - 1] != response.data.knowabout_count) {
                 $scope.labels.push($filter('date')(new Date(), 'h:m:s', '+1300'))
                 $scope.data.push(response.data.knowabout_count);
             }
         })
-    },1000)
+    }, 1000)
 }])
 
 app.controller("RepeatPrescription", ['$scope', '$http', '$filter', ($scope, $http, $filter) => {
@@ -89,8 +62,4 @@ app.controller("RepeatPrescription", ['$scope', '$http', '$filter', ($scope, $ht
             }
         })
     }, 1000);
-    // $scope.labels = ["22-09-2019", "23-09-2019", "24-09-2019", "25-09-2019"];
-    // $scope.data = [
-    //     [1, 4, 8, 5]
-    // ];
 }])
