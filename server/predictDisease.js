@@ -9,11 +9,8 @@ const measelesSymptom = [
     'tired'
 ]
 class Predict {
-    getSymptoms = ()=>{
-        return measelesSymptom;
-    }
     predictDisease = (patientSymptoms) => {
-        return (this.getSymptoms().filter(x => patientSymptoms.includes(x)).length) / ([...this.getSymptoms(), ...patientSymptoms].length)
+        return (measelesSymptom.filter(x => patientSymptoms.includes(x)).length) / ([...measelesSymptom, ...patientSymptoms].length)
     }
 }
 
